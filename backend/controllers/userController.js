@@ -29,14 +29,27 @@ exports.userRegister = async (req, res) => {
  
 exports.userLogin = async (req, res) => {
    const { username, password, role } = req.body;
+   console.log(username);
+   console.log(password);
+   console.log(role);
    try {
         const user = await User.login(username, password);
         sendToken(user._id, res);
-        res.status(200).json({
-            authenticated: true,
-            msg: "User logged in"
-        });
+        if(role === "admin" || role === "cleaner") {
+            res.status(200).json({
+                authenticated: true,
+                msg: "User logged in"
+            });
+        } else {
+            res.status(404).json({
+                authenticated: false,
+                msg: "User not found" 
+            });
+        }
    } catch(err) {
-        res.status(401).json({msg: err.message});
+        res.status(401).json({
+            authenticated: false,
+            msg: err.message
+        });
    }
 }
