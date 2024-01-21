@@ -14,15 +14,15 @@ This directory contains two folders:
 - frontend
 ### Step 4: Head over to the backend directory and run the following commands
 ---
-`cd /Cleaning-Monitoring-System-Manit/backend`
-`cp .env.example .env`
-`npm install`
-`npm start`
+- `cd /Cleaning-Monitoring-System-Manit/backend`
+- `cp .env.example .env`
+- `npm install`
+- `npm start`
 Note: Make sure to check the environment variables
 Run the server on http://localhost:3000/
 ### Step 5: Head over to the frontend directory
 ---
-`cd /Cleaning-Monitoring-System-Manit/frontend`
-`npm install`
-`npm run dev`
+- `cd /Cleaning-Monitoring-System-Manit/frontend`
+- `npm install`
+- `npm run dev`
 
