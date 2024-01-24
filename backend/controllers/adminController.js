@@ -21,6 +21,7 @@ exports.getAdmins = async (req, res) => {
 
     res.status(200).json(adminDetails);
 }
+
 exports.setAdmin = async (user) => {
     await Admin.create({
         username: user._id,

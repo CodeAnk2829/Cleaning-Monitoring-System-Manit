@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
+const { string } = require('zod');
 
-const sweeperSchema = new mongoose.Schema({
+const cleanerSchema = new mongoose.Schema({
     username: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     name: {
         type: String,
-        required: true
+        required: [true, "Name required"]
     },
     gender: {
         type: String,
@@ -23,9 +25,13 @@ const sweeperSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Building'
     },
-    is_assigned_in: { // block
+    assigned_in: { // block
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Block'
+    },
+    assigned_by: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin'
     },
     created_date: {
         type: Date,
@@ -33,5 +39,5 @@ const sweeperSchema = new mongoose.Schema({
     }
 });
 
-const Sweeper = mongoose.model('Sweeper', sweeperSchema);
-module.exports = Sweeper;
+const Cleaner = mongoose.model('Cleaner', cleanerSchema);
+module.exports = Cleaner;
