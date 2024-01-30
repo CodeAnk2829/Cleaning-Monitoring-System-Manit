@@ -18,8 +18,11 @@ This directory contains two folders:
 - `cp .env.example .env`
 - `npm install`
 - `npm start`
+
 Note: Make sure to check the environment variables
+
 Run the server on http://localhost:3000/
+
 ### Step 5: Head over to the frontend directory
 ---
 - `cd /Cleaning-Monitoring-System-Manit/frontend`
