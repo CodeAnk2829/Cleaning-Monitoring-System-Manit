@@ -1,4 +1,5 @@
 export default function AdminRegistration() {
+  console.log("adminRegister render");
   function registerUser(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -6,7 +7,7 @@ export default function AdminRegistration() {
     console.log(formJson);
 
     // TODO: Replace 'fetch' syntax by 'axios'
-    fetch("http://localhost:8000/register", {
+    fetch("http://localhost:8000/api/v1/user/register", {
       method: e.target.method,
       headers: {
         "Content-Type": "application/json",

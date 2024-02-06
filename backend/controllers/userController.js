@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+require('dotenv').config;
 
 const { sendToken } = require("../utils/jwtToken");
 const { setAdmin } = require("./adminController");
@@ -8,7 +9,7 @@ const { userValidationSchema } = require("../utils/zodValidation");
 const { setCleaner } = require("./cleanerController");
 const Admin = require("../models/Admin");
 
-const maxAge = 365 * 24 * 60 * 60;
+const maxAge = process.env.AGE;
 
 exports.userRegister = async (req, res) => {
     try {
@@ -79,13 +80,11 @@ exports.userRegister = async (req, res) => {
  
 exports.userLogin = async (req, res) => {
    const { username, password, role } = req.body;
-   console.log(username);
-   console.log(password);
-   console.log(role);
+
    try {
         const user = await User.login(username, password);
         sendToken(user._id, res);
-        if(role === "admin" || role === "cleaner") {
+        if(role === user.role) {
             res.status(200).json({
                 authenticated: true,
                 msg: "User logged in"

@@ -5,6 +5,6 @@ const { getAdmins } = require("../controllers/adminController");
 const { setBuildingDetails } = require("../controllers/buildingController");
 
 router.get("/building-details", getAdmins);
-router.post("/building", setBuildingDetails);
+router.post("/set-building", setBuildingDetails);
 
 module.exports = router;

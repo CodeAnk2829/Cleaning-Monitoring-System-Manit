@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import Dropdown from "./Dropdown.jsx";
 
 export default function SetBuilding() {
+  console.log("setBuilding render");
+
   function addBuilding(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -23,26 +26,25 @@ export default function SetBuilding() {
     };
 
     // Todo: Replace the 'fetch' syntax by 'axios'
-
-    fetch("http://localhost:8000/building", {
-      method: e.target.method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(async (res) => {
-        if (res.ok) {
-          const json = await res.json();
-          console.log("hello");
-          console.log(json);
-        } else {
-          console.error("Error:", res.status);
-        }
+      fetch("http://localhost:8000/api/v1/building/set-building", {
+        method: e.target.method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error("Error: ", error);
-      });
+        .then(async (res) => {
+          if (res.ok) {
+            const json = await res.json();
+            console.log("hello");
+            console.log(json);
+          } else {
+            console.error("Error:", res.status);
+          }
+        })
+        .catch((error) => {
+          console.error("Error: ", error);
+        });
   }
 
   return (

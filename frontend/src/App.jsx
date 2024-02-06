@@ -5,6 +5,7 @@ const AdminLogin = lazy(() => import("./components/AdminLogin"));
 const AdminRegistration = lazy(() => import("./components/AdminRegistration"));
 const ButtonComponent = lazy(() => import("./components/ButtonComponent"));
 const CleanerLogin = lazy(() => import("./components/CleanerLogin"));
+const FeedbackPageHandle = lazy(() => import("./components/FeedbackPageHandling"));
 const Homepage = lazy(() => import("./components/Homepage"));
 const LoginPage = lazy(() => import("./components/LoginPage"));
 const SetBuilding = lazy(() => import("./components/SetBuilding"));
@@ -18,6 +19,10 @@ function App() {
     {
       path: "/building-details",
       component: SetBuilding,
+    },
+    { 
+      path: "/feedback",
+      component: FeedbackPageHandle
     },
     {
       path: "/login",
@@ -72,6 +77,9 @@ function AppBar() {
       </ButtonComponent>
       <ButtonComponent className={"bg-yellow-500 p-2 rounded"} onSelect={() => navigate("/login/admin")}>
         Login
+      </ButtonComponent>
+      <ButtonComponent className={"bg-purple-500 p-2 rounded"} onSelect={() => navigate("/feedback")}>
+        Feedback
       </ButtonComponent>
 
     </div>

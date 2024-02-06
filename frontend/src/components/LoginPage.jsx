@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function LoginPage({ role }) {
+  console.log("loginPage render");
   const [submitted, setSubmitted] = useState(false);
 
   function login(e) {
@@ -9,7 +10,7 @@ export default function LoginPage({ role }) {
     const formJson = Object.fromEntries(formData.entries());
 
     // TODO: should we use 'useEffect' hook ?
-    fetch("http://localhost:8000/login", {
+    fetch("http://localhost:8000/api/v1/user/login", {
       method: e.target.method,
       headers: {
         "Content-Type": "application/json",
