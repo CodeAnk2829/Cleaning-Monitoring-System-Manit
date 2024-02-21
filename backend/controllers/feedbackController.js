@@ -36,17 +36,3 @@ exports.setRatings = async (req, res) => {
     value: value,
   });
 };
-
-exports.feedbackPageStatus = async (req, res) => {
-  const feedbackPageStart = moment.tz("22:46", "HH:mm", "Asia/Kolkata");
-  const feedbackPageEnd = moment.tz("22:47", "HH:mm", "Asia/Kolkata");
-
-  const now = moment();
-
-  const isFeedbackPageActive = now.isBetween(
-    feedbackPageStart,
-    feedbackPageEnd
-  );
-
-  res.json({ feedbackPage: isFeedbackPageActive });
-};

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import Feedback from "./FeedbackPage";
 import Waiting from "./WaitingPage"
@@ -6,29 +6,28 @@ import Waiting from "./WaitingPage"
 export default function FeedbackPageHandle() {
   console.log("feedback-handle render");
   const [feedbackPage, setFeedbackPage] = useState(false);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
     const checkFeedbackPageStatus = async () => {
-      try {
-        const res = await fetch(
-          "http://localhost:8000/api/v1/feedback/feedback-page-status"
-        );
-        const data = await res.json();
+       const currentTime = new Date();
+       const hours = currentTime.getHours();
+       const minutes = currentTime.getMinutes();
 
-        setFeedbackPage(data.feedbackPage);
-      } catch (err) {
-        console.error("Error while fetching the feedback page");
-      }
+       const isBetween10and12 =
+         (hours >= 10 && minutes >= 0) &&
+         (hours <= 16 && minutes <= 0);
+       setFeedbackPage(isBetween10and12);
     };
 
     // check the feedback component every minute
-    const interval = setInterval(checkFeedbackPageStatus, 60 * 1000);
+    intervalRef.current = setInterval(checkFeedbackPageStatus, 60 * 1000);
 
     // check the feedback page status for the first time
     checkFeedbackPageStatus();
 
     return () => {
-      clearInterval(interval);
+      clearInterval(intervalRef.current);
     };
   }, []);
 
