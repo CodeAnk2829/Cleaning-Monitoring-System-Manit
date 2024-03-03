@@ -1,6 +1,3 @@
-const moment = require("moment-timezone");
-
-const client = require("../config/client");
 const {calculateRating} = require("../utils/ratingCalculator");
 
 exports.setRatings = async (req, res) => {
@@ -36,3 +33,8 @@ exports.setRatings = async (req, res) => {
     value: value,
   });
 };
+
+exports.rate = async (req, res) => {
+  const { value } = req.body;
+  
+}

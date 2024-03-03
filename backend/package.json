@@ -20,6 +20,7 @@
     "jsonwebtoken": "^9.0.2",
     "moment-timezone": "^0.5.45",
     "mongoose": "^8.0.3",
+    "prisma": "^5.10.2",
     "redis": "^4.6.12",
     "validator": "^13.11.0",
     "zod": "^3.22.4"
